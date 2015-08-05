@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Calculus Success Program/VideoTableViewController.swift">
+   </FileRef>
+   <FileRef
       location = "self:Calculus Success Program.xcodeproj">
    </FileRef>
 </Workspace>

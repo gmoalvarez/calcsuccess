@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B3102B141B72C06200A746F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B131B72C06200A746F4 /* AppDelegate.swift */; };
-		B3102B161B72C06200A746F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B151B72C06200A746F4 /* ViewController.swift */; };
 		B3102B191B72C06200A746F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3102B171B72C06200A746F4 /* Main.storyboard */; };
 		B3102B1B1B72C06200A746F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3102B1A1B72C06200A746F4 /* Images.xcassets */; };
 		B3102B1E1B72C06200A746F4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3102B1C1B72C06200A746F4 /* LaunchScreen.xib */; };
 		B3102B2A1B72C06200A746F4 /* Calculus_Success_ProgramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B291B72C06200A746F4 /* Calculus_Success_ProgramTests.swift */; };
+		B3102B341B72C14300A746F4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B331B72C14300A746F4 /* TableViewCell.swift */; };
+		B3102B381B72C2D700A746F4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B371B72C2D700A746F4 /* Video.swift */; };
+		B3102B3A1B72C36000A746F4 /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B391B72C36000A746F4 /* VideoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +31,15 @@
 		B3102B0E1B72C06200A746F4 /* Calculus Success Program.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calculus Success Program.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3102B121B72C06200A746F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3102B131B72C06200A746F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B3102B151B72C06200A746F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B3102B181B72C06200A746F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B3102B1A1B72C06200A746F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B3102B1D1B72C06200A746F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B3102B231B72C06200A746F4 /* Calculus Success ProgramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calculus Success ProgramTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3102B281B72C06200A746F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3102B291B72C06200A746F4 /* Calculus_Success_ProgramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculus_Success_ProgramTests.swift; sourceTree = "<group>"; };
+		B3102B331B72C14300A746F4 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		B3102B371B72C2D700A746F4 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		B3102B391B72C36000A746F4 /* VideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +82,10 @@
 			isa = PBXGroup;
 			children = (
 				B3102B131B72C06200A746F4 /* AppDelegate.swift */,
-				B3102B151B72C06200A746F4 /* ViewController.swift */,
 				B3102B171B72C06200A746F4 /* Main.storyboard */,
+				B3102B331B72C14300A746F4 /* TableViewCell.swift */,
+				B3102B391B72C36000A746F4 /* VideoTableViewController.swift */,
+				B3102B371B72C2D700A746F4 /* Video.swift */,
 				B3102B1A1B72C06200A746F4 /* Images.xcassets */,
 				B3102B1C1B72C06200A746F4 /* LaunchScreen.xib */,
 				B3102B111B72C06200A746F4 /* Supporting Files */,
@@ -212,8 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3102B161B72C06200A746F4 /* ViewController.swift in Sources */,
 				B3102B141B72C06200A746F4 /* AppDelegate.swift in Sources */,
+				B3102B381B72C2D700A746F4 /* Video.swift in Sources */,
+				B3102B341B72C14300A746F4 /* TableViewCell.swift in Sources */,
+				B3102B3A1B72C36000A746F4 /* VideoTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
