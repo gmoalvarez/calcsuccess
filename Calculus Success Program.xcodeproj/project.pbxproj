@@ -15,6 +15,7 @@
 		B3102B341B72C14300A746F4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B331B72C14300A746F4 /* TableViewCell.swift */; };
 		B3102B381B72C2D700A746F4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B371B72C2D700A746F4 /* Video.swift */; };
 		B3102B3A1B72C36000A746F4 /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B391B72C36000A746F4 /* VideoTableViewController.swift */; };
+		B3102B3E1B72DF2300A746F4 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B3D1B72DF2300A746F4 /* VideoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		B3102B331B72C14300A746F4 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B3102B371B72C2D700A746F4 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		B3102B391B72C36000A746F4 /* VideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewController.swift; sourceTree = "<group>"; };
+		B3102B3D1B72DF2300A746F4 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				B3102B171B72C06200A746F4 /* Main.storyboard */,
 				B3102B331B72C14300A746F4 /* TableViewCell.swift */,
 				B3102B391B72C36000A746F4 /* VideoTableViewController.swift */,
+				B3102B3D1B72DF2300A746F4 /* VideoViewController.swift */,
 				B3102B371B72C2D700A746F4 /* Video.swift */,
 				B3102B1A1B72C06200A746F4 /* Images.xcassets */,
 				B3102B1C1B72C06200A746F4 /* LaunchScreen.xib */,
@@ -221,6 +224,7 @@
 				B3102B141B72C06200A746F4 /* AppDelegate.swift in Sources */,
 				B3102B381B72C2D700A746F4 /* Video.swift in Sources */,
 				B3102B341B72C14300A746F4 /* TableViewCell.swift in Sources */,
+				B3102B3E1B72DF2300A746F4 /* VideoViewController.swift in Sources */,
 				B3102B3A1B72C36000A746F4 /* VideoTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

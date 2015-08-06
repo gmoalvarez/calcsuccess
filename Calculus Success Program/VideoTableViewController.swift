@@ -18,7 +18,12 @@ class VideoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshTable()
+        loadTable()
+        if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
+            tableView.estimatedRowHeight = tableView.rowHeight
+            tableView.rowHeight = UITableViewAutomaticDimension
+        }
+        self.tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -26,26 +31,26 @@ class VideoTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func refreshTable() {
+    func loadTable() {
         var video1 = Video()
         video1.title = "Limits - Evaluating Limits by Graphing mini lecture"
         video1.chapter = "2"
         video1.section = "1"
-        video1.path = "2.1-1-Limits%20-%20Evaluating%20Limits%20by%20Graphing%20mini%20lecture.mp4"
-        video1.url = NSURL(string: video1.path!, relativeToURL: baseURL)
+        video1.path = "\(baseURL!)2.1-1-Limits-Evaluating_Limits_by_Graphing_mini_lecture.mp4"
+        video1.url = NSURL(string: video1.path!)
         
         var video2 = Video()
         video2.title = "Limits - Evaluating Limits by Graphing examples"
         video2.chapter = "2"
         video2.section = "1"
-        video2.path = "2.1-2-Limits%20-%20Evaluating%20Limits%20by%20Graphing%20examples.mp4"
+        video2.path = "\(baseURL!)2.1-2-Limits-Evaluating_Limits_by_Graphing_examples.mp4"
         video2.url = NSURL(string: video2.path!, relativeToURL: baseURL)
         
         var video3 = Video()
         video3.title = "Limits - Continuity mini lecture"
         video3.chapter = "2"
         video3.section = "1"
-        video3.path = "2.2-2-Continuity%20Video%20Exercises.mp4"
+        video3.path = "\(baseURL!)2.2-2-Continuity_Video_Exercises.mp4"
         video3.url = NSURL(string: video3.path!, relativeToURL: baseURL)
         
         videos = [[video1,video2],[video3]]
@@ -79,7 +84,7 @@ class VideoTableViewController: UITableViewController {
         return cell
     }
     
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -115,14 +120,24 @@ class VideoTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        if segue.identifier == "showVideo"{
+            if let destination = segue.destinationViewController as? VideoViewController {
+                let videoIndex = tableView.indexPathForSelectedRow()
+                if let section = videoIndex?.section,
+                    let row = videoIndex?.row {
+                        if let videoURL = videos[section][row].url {
+                            destination.videoURL = videoURL
+                        }
+                }
+            }
+        }
     }
-    */
+    
 
 }
