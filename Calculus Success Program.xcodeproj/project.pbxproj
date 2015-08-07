@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30B03091B754A3400350C00 /* ChapterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B03081B754A3400350C00 /* ChapterTableViewController.swift */; };
+		B30B030B1B7551D700350C00 /* ChapterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30B030A1B7551D700350C00 /* ChapterTableViewCell.swift */; };
 		B3102B141B72C06200A746F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B131B72C06200A746F4 /* AppDelegate.swift */; };
 		B3102B191B72C06200A746F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3102B171B72C06200A746F4 /* Main.storyboard */; };
 		B3102B1B1B72C06200A746F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3102B1A1B72C06200A746F4 /* Images.xcassets */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B30B03081B754A3400350C00 /* ChapterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterTableViewController.swift; sourceTree = "<group>"; };
+		B30B030A1B7551D700350C00 /* ChapterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterTableViewCell.swift; sourceTree = "<group>"; };
 		B3102B0E1B72C06200A746F4 /* Calculus Success Program.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calculus Success Program.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3102B121B72C06200A746F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3102B131B72C06200A746F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,14 +91,16 @@
 		B3102B101B72C06200A746F4 /* Calculus Success Program */ = {
 			isa = PBXGroup;
 			children = (
+				B3102B371B72C2D700A746F4 /* Video.swift */,
 				B3102B3F1B73961600A746F4 /* calc_video_list.json */,
 				B3102B411B73F79E00A746F4 /* VideoListManager.swift */,
 				B3102B131B72C06200A746F4 /* AppDelegate.swift */,
 				B3102B171B72C06200A746F4 /* Main.storyboard */,
-				B3102B331B72C14300A746F4 /* TableViewCell.swift */,
+				B30B03081B754A3400350C00 /* ChapterTableViewController.swift */,
+				B30B030A1B7551D700350C00 /* ChapterTableViewCell.swift */,
 				B3102B391B72C36000A746F4 /* VideoTableViewController.swift */,
+				B3102B331B72C14300A746F4 /* TableViewCell.swift */,
 				B3102B3D1B72DF2300A746F4 /* VideoViewController.swift */,
-				B3102B371B72C2D700A746F4 /* Video.swift */,
 				B3102B1A1B72C06200A746F4 /* Images.xcassets */,
 				B3102B1C1B72C06200A746F4 /* LaunchScreen.xib */,
 				B3102B111B72C06200A746F4 /* Supporting Files */,
@@ -232,8 +238,10 @@
 				B3102B381B72C2D700A746F4 /* Video.swift in Sources */,
 				B3102B341B72C14300A746F4 /* TableViewCell.swift in Sources */,
 				B3102B3E1B72DF2300A746F4 /* VideoViewController.swift in Sources */,
+				B30B03091B754A3400350C00 /* ChapterTableViewController.swift in Sources */,
 				B3102B3A1B72C36000A746F4 /* VideoTableViewController.swift in Sources */,
 				B3102B421B73F79E00A746F4 /* VideoListManager.swift in Sources */,
+				B30B030B1B7551D700350C00 /* ChapterTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +439,7 @@
 				B3102B2F1B72C06200A746F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B3102B301B72C06200A746F4 /* Build configuration list for PBXNativeTarget "Calculus Success ProgramTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +448,7 @@
 				B3102B321B72C06200A746F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
