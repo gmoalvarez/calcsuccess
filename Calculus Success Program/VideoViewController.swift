@@ -26,6 +26,7 @@ class VideoViewController: AVPlayerViewController {
     var videoURL = NSURL()
     override func viewWillAppear(animated: Bool) {
         self.player = AVPlayer(URL: videoURL)
+        self.player.play()
     }
 
     /*
