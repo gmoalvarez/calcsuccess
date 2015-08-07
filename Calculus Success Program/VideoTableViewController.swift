@@ -13,10 +13,12 @@ class VideoTableViewController: UITableViewController {
     //Create simple videos to show on Table View
     private let baseURL = NSURL(string: "http://79.170.44.125/calcsuccess.com/calcvideos/")
     
+    var chapter = 0 //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        println(chapter)
         loadTable()
         
         // Uncomment the following line to preserve selection between presentations

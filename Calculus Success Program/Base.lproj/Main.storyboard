@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="miO-W5-tG7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FOp-VW-Oa5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chapterCell" id="Jkm-wv-IIS" customClass="ChapterTableViewCell" customModule="Calculus_Success_Program" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="chapterCell" id="Jkm-wv-IIS" customClass="ChapterTableViewCell" customModule="Calculus_Success_Program" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jkm-wv-IIS" id="Gst-ft-FjW">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -29,6 +29,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="chapterCellLabel" destination="Ipf-nx-66W" id="y1e-et-ZhZ"/>
+                                    <segue destination="ykI-Vg-PCR" kind="show" identifier="showChapter" id="w3z-WY-v6V"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -37,10 +38,11 @@
                             <outlet property="delegate" destination="miO-W5-tG7" id="cIG-Ix-VMz"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="4m4-TP-aw7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wqj-GB-9A9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294" y="244"/>
+            <point key="canvasLocation" x="1106" y="244"/>
         </scene>
         <!--Video Table View Controller-->
         <scene sceneID="MWk-aE-H8d">
@@ -85,7 +87,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqt-4s-Jpv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1002" y="244"/>
+            <point key="canvasLocation" x="1814" y="244"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="IIT-cf-YAY">
@@ -93,7 +95,25 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="VbO-Qp-CPg" customClass="VideoViewController" customModule="Calculus_Success_Program" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0b-6p-ubQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752" y="244"/>
+            <point key="canvasLocation" x="2564" y="244"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uU6-Rs-H5C">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FOp-VW-Oa5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W4B-tc-oZ2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="miO-W5-tG7" kind="relationship" relationship="rootViewController" id="dO6-JI-URa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mZz-Hz-4r4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="294" y="244"/>
         </scene>
     </scenes>
 </document>
