@@ -100,7 +100,7 @@ class ChapterTableViewController: UITableViewController {
                 let chapterIndex = tableView.indexPathForSelectedRow()
                 if let rowSelected = chapterIndex?.row {
                     let chapter = rowSelected + 1
-                    destination.chapter = chapter
+                    destination.currentChapter = "\(chapter)"
                 }
             }
         }

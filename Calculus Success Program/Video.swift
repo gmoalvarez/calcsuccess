@@ -10,7 +10,7 @@ import Foundation
 
 
 
-class Video {
+class Video:NSObject {
     
     private let baseURLString = "http://79.170.44.125/calcsuccess.com/calcvideos/"
     
@@ -21,11 +21,11 @@ class Video {
     let fileName:String
     let url:NSURL?
     //  var quality:String
-    var description:String {
+    override var description:String {
         return title
     }
     
-    init() {
+    override init() {
         self.title = ""
         self.chapter = ""
         self.section = ""
@@ -47,4 +47,6 @@ class Video {
             self.url = NSURL(string: "")
         }
     }
+    
 }
+

@@ -13,12 +13,12 @@ class VideoTableViewController: UITableViewController {
     //Create simple videos to show on Table View
     private let baseURL = NSURL(string: "http://79.170.44.125/calcsuccess.com/calcvideos/")
     
-    var chapter = 0 //Initialized to 0 but set to 1-6 when segue occurs
+    var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(chapter)
+        println(currentChapter)
         loadTable()
         
         // Uncomment the following line to preserve selection between presentations
@@ -29,44 +29,23 @@ class VideoTableViewController: UITableViewController {
     }
     
     func loadTable() {
-//        var video1 = Video()
-//        video1.title = "Limits - Evaluating Limits by Graphing mini lecture"
-//        video1.chapter = "2"
-//        video1.section = "1"
-//        video1.path = "\(baseURL!)chap2/2.1-1-Limits-Evaluating_Limits_by_Graphing_mini_lecture.mp4"
-//        video1.url = NSURL(string: video1.path!)
-//        
-//        var video2 = Video()
-//        video2.title = "Limits - Evaluating Limits by Graphing examples"
-//        video2.chapter = "2"
-//        video2.section = "1"
-//        video2.path = "\(baseURL!)chap2/2.1-2-Limits-Evaluating_Limits_by_Graphing_examples.mp4"
-//        video2.url = NSURL(string: video2.path!)
-//        
-//        var video3 = Video()
-//        video3.title = "Limits - Continuity mini lecture"
-//        video3.chapter = "2"
-//        video3.section = "2"
-//        video3.path = "\(baseURL!)chap2/2.2-2-Continuity_Video_Exercises.mp4"
-//        video3.url = NSURL(string: video3.path!)
-//        
-//        videos = [[video1,video2],[video3]]
         //Process json file and iterate through all of the videos
         //For every video, initialize a Video
         //Add the video to the videos array in section 1
         VideoListManager.getVideoNameAndURLWithSuccess { (data) -> Void in
             var parseError: NSError?
             let parsedObject:AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
-            if let videoList = parsedObject as? [NSDictionary] {
+            if let videoList = parsedObject as? [Dictionary<String,String>] {
+                let videoListForChapter = videoList.filter {$0["chapter"] == self.currentChapter}
                 self.videos.append(Array(count: videoList.count,repeatedValue:Video()))
-                for (index,video) in enumerate(videoList) {
-                    let title = video["title"] as! String
-                    let chapter = video["chapter"] as! String
-                    let section = video["section"] as! String
-                    let path = video["path"] as! String
-                    let fileName = video["fileName"] as! String
-                    self.videos[0][index] = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName)
-                }
+//                for (index,video) in enumerate(videoList) {
+//                    let title = video["title"] as! String
+//                    let chapter = video["chapter"] as! String
+//                    let section = video["section"] as! String
+//                    let path = video["path"] as! String
+//                    let fileName = video["fileName"] as! String
+//                    self.videos[0][index] = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName)
+//                }
             }
             dispatch_async(dispatch_get_main_queue()) {
                 if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
