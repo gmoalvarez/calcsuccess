@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoTableViewController: UITableViewController,UITableViewDataSource {
+class VideoTableViewController: UITableViewController {
 
     
     //Create simple videos to show on Table View
@@ -19,8 +19,9 @@ class VideoTableViewController: UITableViewController,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(currentChapter)
+        
         loadTable()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -106,7 +107,23 @@ class VideoTableViewController: UITableViewController,UITableViewDataSource {
         return cell
     }
     
-
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+//        var sections = [String]()
+//        for video in videos {
+//            if let firstVideo = video.first {
+//                sections.append(firstVideo.section)
+//            }
+//        }
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section > videos.count {
+            return nil
+        }
+        return videos[section].first?.title
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
