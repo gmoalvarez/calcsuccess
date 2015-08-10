@@ -41,7 +41,7 @@ class Video:NSObject {
         self.fileName = fileName ?? ""
         if let path = path {
             self.path = baseURLString + path
-            self.url = NSURL(string: self.path + self.fileName)!
+            self.url = NSURL(string: self.path + self.fileName)
         } else {
             self.path = ""
             self.url = NSURL(string: "")

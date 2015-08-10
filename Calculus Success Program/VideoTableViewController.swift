@@ -8,8 +8,9 @@
 
 import UIKit
 
-class VideoTableViewController: UITableViewController {
+class VideoTableViewController: UITableViewController,UITableViewDataSource {
 
+    
     //Create simple videos to show on Table View
     private let baseURL = NSURL(string: "http://79.170.44.125/calcsuccess.com/calcvideos/")
     
@@ -20,7 +21,6 @@ class VideoTableViewController: UITableViewController {
         super.viewDidLoad()
         println(currentChapter)
         loadTable()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,16 +37,22 @@ class VideoTableViewController: UITableViewController {
             let parsedObject:AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
             if let videoList = parsedObject as? [Dictionary<String,String>] {
                 let videoListForChapter = videoList.filter {$0["chapter"] == self.currentChapter}
-                self.videos.append(Array(count: videoList.count,repeatedValue:Video()))
-//                for (index,video) in enumerate(videoList) {
-//                    let title = video["title"] as! String
-//                    let chapter = video["chapter"] as! String
-//                    let section = video["section"] as! String
-//                    let path = video["path"] as! String
-//                    let fileName = video["fileName"] as! String
-//                    self.videos[0][index] = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName)
-//                }
+                let numberOfSections = self.findMaximumSection(videoListForChapter)
+//                let numberOfSections = videoList.last?["section"]?.toInt() ?? 1
+                let numberOfVideos = videoListForChapter.count
+                self.videos = Array(count: numberOfSections,repeatedValue:[Video]())
+                for video in videoListForChapter {
+                    let title = video["title"]
+                    let chapter = video["chapter"]
+                    let section = video["section"]
+                    let path = video["path"]
+                    let fileName = video["fileName"]
+                    let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName)
+                    let index = section!.toInt()! - 1
+                    self.videos[index].append(videotoAdd)
+                }
             }
+        
             dispatch_async(dispatch_get_main_queue()) {
                 if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
                     self.tableView.estimatedRowHeight = self.tableView.rowHeight
@@ -56,6 +62,19 @@ class VideoTableViewController: UITableViewController {
             }
         }
         
+    }
+    
+    private func findMaximumSection( dict: Array<[String : String]>) -> Int{
+        var currentMax = 0
+        for entry in dict {
+            var currentSection = entry["section"]?.toInt()
+            if let currentSection = currentSection {
+                if currentSection > currentMax {
+                    currentMax = currentSection
+                }
+            }
+        }
+        return currentMax
     }
     
 
@@ -87,7 +106,7 @@ class VideoTableViewController: UITableViewController {
         return cell
     }
     
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

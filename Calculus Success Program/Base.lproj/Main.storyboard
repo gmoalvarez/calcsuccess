@@ -74,7 +74,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="videoTitleLabel" destination="64K-Yg-pyX" id="iOh-rL-PH6"/>
-                                    <segue destination="VbO-Qp-CPg" kind="show" identifier="showVideo" id="Jy2-1P-rJL"/>
+                                    <segue destination="VbO-Qp-CPg" kind="presentation" identifier="showVideo" modalPresentationStyle="fullScreen" id="Jy2-1P-rJL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
