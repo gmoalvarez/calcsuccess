@@ -19,6 +19,7 @@ class Video:NSObject {
     let section:String
     let path:String
     let fileName:String
+    let ext:String
     let url:NSURL?
     //  var quality:String
     override var description:String {
@@ -30,22 +31,25 @@ class Video:NSObject {
         self.chapter = ""
         self.section = ""
         self.fileName = ""
+        self.ext = ""
         self.path = ""
         self.url = NSURL(string: "")
     }
     
-    init(title: String?,chapter:String?, section: String?, path: String?, fileName: String?) {
+    init(title: String?,chapter:String?, section: String?, path: String?, fileName: String?,ext:String?) {
         self.title = title ?? ""
         self.chapter = chapter ?? ""
         self.section = section ?? ""
         self.fileName = fileName ?? ""
+        self.ext = ext ?? ""
         if let path = path {
             self.path = baseURLString + path
-            self.url = NSURL(string: self.path + self.fileName)
         } else {
-            self.path = ""
-            self.url = NSURL(string: "")
+            self.path = baseURLString
         }
+        let url = self.path + self.fileName + "." + self.ext
+        self.url = NSURL(string: url)
+
     }
     
 }

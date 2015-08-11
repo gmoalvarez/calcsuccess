@@ -48,7 +48,8 @@ class VideoTableViewController: UITableViewController {
                     let section = video["section"]
                     let path = video["path"]
                     let fileName = video["fileName"]
-                    let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName)
+                    let ext = video["extension"]
+                    let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName,ext:ext)
                     let index = section!.toInt()! - 1
                     self.videos[index].append(videotoAdd)
                 }
@@ -108,12 +109,6 @@ class VideoTableViewController: UITableViewController {
     }
     
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-//        var sections = [String]()
-//        for video in videos {
-//            if let firstVideo = video.first {
-//                sections.append(firstVideo.section)
-//            }
-//        }
         return nil
     }
     
