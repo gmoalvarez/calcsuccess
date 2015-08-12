@@ -20,7 +20,7 @@ class ChapterTableViewCell: UITableViewCell {
         }
     }
     
-    func updateUI() {
+    private func updateUI() {
         chapterCellLabel.numberOfLines = 0
         if let chapter = chapter {
             chapterCellLabel.text = chapter

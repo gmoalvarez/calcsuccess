@@ -19,17 +19,14 @@ class VideoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.estimatedRowHeight = 30
+        }
         loadTable()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func loadTable() {
+    private func loadTable() {
         //Process json file and iterate through all of the videos
         //For every video, initialize a Video
         //Add the video to the videos array in section 1
@@ -39,7 +36,6 @@ class VideoTableViewController: UITableViewController {
             if let videoList = parsedObject as? [Dictionary<String,String>] {
                 let videoListForChapter = videoList.filter {$0["chapter"] == self.currentChapter}
                 let numberOfSections = self.findMaximumSection(videoListForChapter)
-//                let numberOfSections = videoList.last?["section"]?.toInt() ?? 1
                 let numberOfVideos = videoListForChapter.count
                 self.videos = Array(count: numberOfSections,repeatedValue:[Video]())
                 for video in videoListForChapter {
@@ -56,10 +52,10 @@ class VideoTableViewController: UITableViewController {
             }
         
             dispatch_async(dispatch_get_main_queue()) {
-                if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
-                    self.tableView.estimatedRowHeight = self.tableView.rowHeight
-                    self.tableView.rowHeight = UITableViewAutomaticDimension
-                }
+//                if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
+//                    self.tableView.estimatedRowHeight = self.tableView.rowHeight
+//                    self.tableView.rowHeight = UITableViewAutomaticDimension
+//                }
                 self.tableView.reloadData()
             }
         }
@@ -88,14 +84,10 @@ class VideoTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return videos.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return videos[section].count
     }
 
@@ -119,45 +111,8 @@ class VideoTableViewController: UITableViewController {
         return videos[section].first?.title
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         
         if segue.identifier == "showVideo"{

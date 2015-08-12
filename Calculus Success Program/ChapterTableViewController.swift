@@ -10,13 +10,13 @@ import UIKit
 
 class ChapterTableViewController: UITableViewController {
 
-    let numberOfChapters = 6
+    
     let chapters = ["1":"Review of Functions and Trigonometry",
         "2":"Limits",
         "3":"Differentiation",
         "4":"Applications of Differentiation",
-        "5":"Integration",
-        "6":"Applications of Integration"]
+        "5":"Integration"]
+    let numberOfChapters = 5
     override func viewDidLoad() {
         super.viewDidLoad()
 

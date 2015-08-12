@@ -19,7 +19,6 @@ class TableViewCell: UITableViewCell {
     }
     
     private func updateUI() {
-        videoTitleLabel.numberOfLines = 0
         videoTitleLabel.text = video?.title
     }
     
