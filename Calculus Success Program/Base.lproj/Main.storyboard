@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FOp-VW-Oa5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FOp-VW-Oa5">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -159,7 +158,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7io-W0-2dn">
                                                     <rect key="frame" x="550" y="8" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="toggleQuality:" destination="L96-fo-PHb" eventType="valueChanged" id="oq0-Yq-YvQ"/>
+                                                        <action selector="toggleQuality:" destination="L96-fo-PHb" eventType="valueChanged" id="CKq-ig-dIE"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -218,7 +217,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="watchInHD" destination="7io-W0-2dn" id="lva-Lj-qG9"/>
+                        <outlet property="watchInHD" destination="7io-W0-2dn" id="3m9-dz-GXL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nkT-9y-Dec" userLabel="First Responder" sceneMemberID="firstResponder"/>

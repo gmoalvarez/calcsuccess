@@ -20,6 +20,7 @@
 		B3102B3E1B72DF2300A746F4 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B3D1B72DF2300A746F4 /* VideoViewController.swift */; };
 		B3102B401B73961600A746F4 /* calc_video_list.json in Resources */ = {isa = PBXBuildFile; fileRef = B3102B3F1B73961600A746F4 /* calc_video_list.json */; };
 		B3102B421B73F79E00A746F4 /* VideoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B411B73F79E00A746F4 /* VideoListManager.swift */; };
+		B3571A9D1B9557E7000A8602 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3571A9C1B9557E7000A8602 /* SettingsTableViewController.swift */; };
 		B3F7DEB61B7BDA16003FFF20 /* Icon-29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F7DEA91B7BDA16003FFF20 /* Icon-29@1x.png */; };
 		B3F7DEB71B7BDA16003FFF20 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F7DEAA1B7BDA16003FFF20 /* Icon-29@2x.png */; };
 		B3F7DEB81B7BDA16003FFF20 /* Icon-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F7DEAB1B7BDA16003FFF20 /* Icon-29@3x.png */; };
@@ -67,6 +68,7 @@
 		B3102B3D1B72DF2300A746F4 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		B3102B3F1B73961600A746F4 /* calc_video_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calc_video_list.json; sourceTree = "<group>"; };
 		B3102B411B73F79E00A746F4 /* VideoListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListManager.swift; sourceTree = "<group>"; };
+		B3571A9C1B9557E7000A8602 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		B3F7DEA91B7BDA16003FFF20 /* Icon-29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@1x.png"; sourceTree = "<group>"; };
 		B3F7DEAA1B7BDA16003FFF20 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
 		B3F7DEAB1B7BDA16003FFF20 /* Icon-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@3x.png"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				B3102B131B72C06200A746F4 /* AppDelegate.swift */,
 				B3102B171B72C06200A746F4 /* Main.storyboard */,
 				B30B03081B754A3400350C00 /* ChapterTableViewController.swift */,
+				B3571A9C1B9557E7000A8602 /* SettingsTableViewController.swift */,
 				B30B030A1B7551D700350C00 /* ChapterTableViewCell.swift */,
 				B3102B391B72C36000A746F4 /* VideoTableViewController.swift */,
 				B3102B331B72C14300A746F4 /* TableViewCell.swift */,
@@ -320,6 +323,7 @@
 				B3102B3A1B72C36000A746F4 /* VideoTableViewController.swift in Sources */,
 				B3102B421B73F79E00A746F4 /* VideoListManager.swift in Sources */,
 				B30B030B1B7551D700350C00 /* ChapterTableViewCell.swift in Sources */,
+				B3571A9D1B9557E7000A8602 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
