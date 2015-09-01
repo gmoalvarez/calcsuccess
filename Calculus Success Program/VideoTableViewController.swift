@@ -29,7 +29,7 @@ class VideoTableViewController: UITableViewController {
     private func loadTable() {
         //Process json file and iterate through all of the videos
         //For every video, initialize a Video
-        //Add the video to the videos array in section 1
+        //Add the video to the videos 2D array model
         VideoListManager.getVideoNameAndURLWithSuccess { (data) -> Void in
             var parseError: NSError?
             let parsedObject:AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
@@ -52,14 +52,9 @@ class VideoTableViewController: UITableViewController {
             }
         
             dispatch_async(dispatch_get_main_queue()) {
-//                if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
-//                    self.tableView.estimatedRowHeight = self.tableView.rowHeight
-//                    self.tableView.rowHeight = UITableViewAutomaticDimension
-//                }
                 self.tableView.reloadData()
             }
         }
-        
     }
     
     private func findMaximumSection( dict: Array<[String : String]>) -> Int{
