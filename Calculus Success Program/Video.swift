@@ -12,7 +12,7 @@ import Foundation
 
 class Video:NSObject {
     
-    private let baseURLString = "http://79.170.44.125/calcsuccess.com/calcvideos/"
+    private let baseURLString = "http://www.calcsuccess.org/calcvideos/"
     
     let title:String
     let chapter:String
@@ -21,7 +21,7 @@ class Video:NSObject {
     let fileName:String
     let ext:String
     let url:NSURL?
-    //  var quality:String
+    let quality:String
     override var description:String {
         return title
     }
@@ -33,24 +33,28 @@ class Video:NSObject {
         self.fileName = ""
         self.ext = ""
         self.path = ""
+        self.quality = ""
         self.url = NSURL(string: "")
     }
     
-    init(title: String?,chapter:String?, section: String?, path: String?, fileName: String?,ext:String?) {
+    init(title: String?,chapter:String?, section: String?, path: String?, fileName: String?, quality: String?, ext:String?) {
         self.title = title ?? ""
         self.chapter = chapter ?? ""
         self.section = section ?? ""
         self.fileName = fileName ?? ""
+        self.quality = quality ?? ""
         self.ext = ext ?? ""
         if let path = path {
             self.path = baseURLString + path
         } else {
             self.path = baseURLString
         }
-        let url = self.path + self.fileName + "." + self.ext
+        let url:String
+        if quality == "HD" {
+            url = self.path + self.fileName + "-HD" + "." + self.ext
+        } else {
+            url = self.path + self.fileName + "." + self.ext
+        }
         self.url = NSURL(string: url)
-
     }
-    
 }
-

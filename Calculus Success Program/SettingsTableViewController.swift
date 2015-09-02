@@ -10,7 +10,6 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    
     @IBOutlet weak var watchInHD: UISwitch!
     
     override func viewDidLoad() {
@@ -40,7 +39,6 @@ class SettingsTableViewController: UITableViewController {
         }
         
     }
-    
     
     /*
     // MARK: - Navigation

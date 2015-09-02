@@ -12,7 +12,7 @@ class VideoTableViewController: UITableViewController {
 
     
     //Create simple videos to show on Table View
-    private let baseURL = NSURL(string: "http://79.170.44.125/calcsuccess.com/calcvideos/")
+    private let baseURL = NSURL(string: "http://www.calcsuccess.org/calcvideos/")
     
     var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]()
@@ -45,7 +45,8 @@ class VideoTableViewController: UITableViewController {
                     let path = video["path"]
                     let fileName = video["fileName"]
                     let ext = video["extension"]
-                    let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName,ext:ext)
+                    let quality = self.getQualityFromSettings()
+                    let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName,quality: quality, ext:ext)
                     let index = section!.toInt()! - 1
                     self.videos[index].append(videotoAdd)
                 }
@@ -55,6 +56,11 @@ class VideoTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    private func getQualityFromSettings() -> String {
+        let watchInHD = NSUserDefaults.standardUserDefaults().boolForKey("watchInHD")
+        return watchInHD == true ? "HD":"SD"
     }
     
     private func findMaximumSection( dict: Array<[String : String]>) -> Int{

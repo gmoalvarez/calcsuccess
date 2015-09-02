@@ -10,7 +10,6 @@ import UIKit
 
 class ChapterTableViewController: UITableViewController {
 
-    
     let chapters = ["1":"Review of Functions and Trigonometry",
         "2":"Limits",
         "3":"Differentiation",
@@ -19,14 +18,17 @@ class ChapterTableViewController: UITableViewController {
     let numberOfChapters = 5
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let quality = NSUserDefaults.standardUserDefaults().objectForKey("watchInHD") as? Bool
+        if quality == nil {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "watchInHD")
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
