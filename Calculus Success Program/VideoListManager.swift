@@ -16,14 +16,17 @@ class VideoListManager {
             //2
             let filePath = NSBundle.mainBundle().pathForResource("calc_video_list",ofType:"json")
             
-            var readError:NSError?
             if let filePath = filePath {
-                if let data = NSData(contentsOfFile:filePath,options: NSDataReadingOptions.DataReadingUncached,error:&readError) {
+                do {
+                    let data = try NSData(contentsOfFile:filePath,options: NSDataReadingOptions.DataReadingUncached)
                     success(data: data)
+                } catch let error as NSError {
+                    var readError:NSError? = error
+                    print(readError)
+                } catch {
+                    fatalError()
                 }
             }
-            
         })
-        
     }
 }

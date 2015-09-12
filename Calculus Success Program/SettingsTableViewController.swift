@@ -9,6 +9,8 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
+    let ratingsAddress = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1030043040&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
+    
     
     @IBOutlet weak var watchInHD: UISwitch!
     
@@ -40,6 +42,14 @@ class SettingsTableViewController: UITableViewController {
         
     }
     
+    @IBAction func rateApp(sender: UIButton) {
+        guard let ratingsURL = NSURL(string: ratingsAddress) else {
+            print("Error: URL not found")
+            return
+        }
+        UIApplication.sharedApplication().openURL(ratingsURL)
+        
+    }
     /*
     // MARK: - Navigation
     

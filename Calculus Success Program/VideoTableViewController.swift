@@ -31,12 +31,20 @@ class VideoTableViewController: UITableViewController {
         //For every video, initialize a Video
         //Add the video to the videos 2D array model
         VideoListManager.getVideoNameAndURLWithSuccess { (data) -> Void in
-            var parseError: NSError?
-            let parsedObject:AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
+            let parsedObject:AnyObject?
+            do {
+                parsedObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+            } catch let error as NSError {
+                let parseError:NSError? = error
+                print(parseError)
+                parsedObject = nil
+            } catch {
+                fatalError()
+            }
             if let videoList = parsedObject as? [Dictionary<String,String>] {
                 let videoListForChapter = videoList.filter {$0["chapter"] == self.currentChapter}
                 let numberOfSections = self.findMaximumSection(videoListForChapter)
-                let numberOfVideos = videoListForChapter.count
+//                let numberOfVideos = videoListForChapter.count
                 self.videos = Array(count: numberOfSections,repeatedValue:[Video]())
                 for video in videoListForChapter {
                     let title = video["title"]
@@ -47,7 +55,7 @@ class VideoTableViewController: UITableViewController {
                     let ext = video["extension"]
                     let quality = self.getQualityFromSettings()
                     let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName,quality: quality, ext:ext)
-                    let index = section!.toInt()! - 1
+                    let index = Int(section!)! - 1
                     self.videos[index].append(videotoAdd)
                 }
             }
@@ -66,7 +74,7 @@ class VideoTableViewController: UITableViewController {
     private func findMaximumSection( dict: Array<[String : String]>) -> Int{
         var currentMax = 0
         for entry in dict {
-            var currentSection = entry["section"]?.toInt()
+            let currentSection = Int(entry["section"]!)
             if let currentSection = currentSection {
                 if currentSection > currentMax {
                     currentMax = currentSection
@@ -101,7 +109,7 @@ class VideoTableViewController: UITableViewController {
         return cell
     }
     
-    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         return nil
     }
     
@@ -118,7 +126,7 @@ class VideoTableViewController: UITableViewController {
         
         if segue.identifier == "showVideo"{
             if let destination = segue.destinationViewController as? VideoViewController {
-                let videoIndex = tableView.indexPathForSelectedRow()
+                let videoIndex = tableView.indexPathForSelectedRow
                 if let section = videoIndex?.section,
                     let row = videoIndex?.row {
                         if let videoURL = videos[section][row].url {

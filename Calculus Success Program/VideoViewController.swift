@@ -27,7 +27,7 @@ class VideoViewController: AVPlayerViewController {
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.player = AVPlayer(URL: videoURL)
-        self.player.play()
+        self.player?.play()
     }
 
     /*

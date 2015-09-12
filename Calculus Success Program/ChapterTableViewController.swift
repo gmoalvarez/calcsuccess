@@ -99,7 +99,7 @@ class ChapterTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showChapter" {
             if let destination = segue.destinationViewController as? VideoTableViewController {
-                let chapterIndex = tableView.indexPathForSelectedRow()
+                let chapterIndex = tableView.indexPathForSelectedRow
                 if let rowSelected = chapterIndex?.row {
                     let chapter = rowSelected + 1
                     destination.currentChapter = "\(chapter)"
