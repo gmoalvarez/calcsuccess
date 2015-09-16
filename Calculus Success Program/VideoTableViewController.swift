@@ -11,8 +11,6 @@ import UIKit
 class VideoTableViewController: UITableViewController {
 
     
-    //Create simple videos to show on Table View
-    private let baseURL = NSURL(string: "http://www.calcsuccess.org/calcvideos/")
     
     var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]()

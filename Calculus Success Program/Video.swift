@@ -12,7 +12,7 @@ import Foundation
 
 class Video:NSObject {
     
-    private let baseURLString = "http://www.calcsuccess.org/calcvideos/"
+    private let baseURLString = "http://217.199.187.197/calcsuccess.org/calcvideos/"
     
     let title:String
     let chapter:String

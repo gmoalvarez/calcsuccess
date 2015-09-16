@@ -21,7 +21,7 @@ class VideoListManager {
                     let data = try NSData(contentsOfFile:filePath,options: NSDataReadingOptions.DataReadingUncached)
                     success(data: data)
                 } catch let error as NSError {
-                    var readError:NSError? = error
+                    let readError:NSError? = error
                     print(readError)
                 } catch {
                     fatalError()

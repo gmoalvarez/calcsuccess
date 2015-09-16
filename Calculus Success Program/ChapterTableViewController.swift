@@ -14,8 +14,12 @@ class ChapterTableViewController: UITableViewController {
         "2":"Limits",
         "3":"Differentiation",
         "4":"Applications of Differentiation",
-        "5":"Integration"]
-    let numberOfChapters = 5
+        "5":"Integration",
+        "6":"Applications of Integration",
+        "7":"Integration Techniques",
+        "8":"More Applications of Integration",
+        "9":"Sequences and Series"]
+    let numberOfChapters = 9
     override func viewDidLoad() {
         super.viewDidLoad()
         let quality = NSUserDefaults.standardUserDefaults().objectForKey("watchInHD") as? Bool
