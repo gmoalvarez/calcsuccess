@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FOp-VW-Oa5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FOp-VW-Oa5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -13,6 +13,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zqX-A3-lNa">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="chapterCell" id="Jkm-wv-IIS" customClass="ChapterTableViewCell" customModule="Calculus_Success_Program" customModuleProvider="target">
@@ -24,12 +25,15 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipf-nx-66W">
                                             <rect key="frame" x="8" y="0.0" width="584" height="35.5"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                 </tableViewCellContentView>
+                                <animations/>
                                 <connections>
                                     <outlet property="chapterCellLabel" destination="Ipf-nx-66W" id="y1e-et-ZhZ"/>
                                     <segue destination="ykI-Vg-PCR" kind="show" identifier="showChapter" id="w3z-WY-v6V"/>
@@ -60,6 +64,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="eCc-Rn-Nea">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="40" id="ObE-ev-jN5" customClass="TableViewCell" customModule="Calculus_Success_Program" customModuleProvider="target">
@@ -71,11 +76,13 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="64K-Yg-pyX">
                                             <rect key="frame" x="1" y="11" width="598" height="17.5"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="64K-Yg-pyX" firstAttribute="centerX" secondItem="pcT-Bu-CU7" secondAttribute="centerX" id="2l5-c4-IrI"/>
                                         <constraint firstItem="64K-Yg-pyX" firstAttribute="top" secondItem="pcT-Bu-CU7" secondAttribute="topMargin" constant="3" id="43D-LK-Gzn"/>
@@ -83,6 +90,7 @@
                                         <constraint firstItem="64K-Yg-pyX" firstAttribute="centerY" secondItem="pcT-Bu-CU7" secondAttribute="centerY" id="NaL-a9-lxu"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
                                 <connections>
                                     <outlet property="videoTitleLabel" destination="64K-Yg-pyX" id="iOh-rL-PH6"/>
                                     <segue destination="VbO-Qp-CPg" kind="presentation" identifier="showVideo" modalPresentationStyle="fullScreen" id="Jy2-1P-rJL"/>
@@ -122,6 +130,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="W4B-tc-oZ2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -139,6 +148,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="bPE-Y2-yAL">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Movie Settings" id="9if-Dn-SQm">
@@ -152,17 +162,20 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch in HD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftP-xI-z2z">
                                                     <rect key="frame" x="8" y="8" width="96" height="28"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7io-W0-2dn">
                                                     <rect key="frame" x="550" y="8" width="51" height="31"/>
+                                                    <animations/>
                                                     <connections>
                                                         <action selector="toggleQuality:" destination="L96-fo-PHb" eventType="valueChanged" id="CKq-ig-dIE"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="7io-W0-2dn" firstAttribute="top" secondItem="ftP-xI-z2z" secondAttribute="top" id="LRe-vd-8RP"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7io-W0-2dn" secondAttribute="trailing" constant="-7" id="SP9-yW-rsl"/>
@@ -171,6 +184,7 @@
                                                 <constraint firstItem="ftP-xI-z2z" firstAttribute="leading" secondItem="yex-lr-ZQ3" secondAttribute="leadingMargin" id="t4p-U3-sAp"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -185,6 +199,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6D-RZ-XUA">
                                                     <rect key="frame" x="8" y="7" width="320" height="30"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="320" id="QTe-wE-gD9"/>
                                                     </constraints>
@@ -194,11 +209,13 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="C6D-RZ-XUA" firstAttribute="centerY" secondItem="cKg-zq-8mi" secondAttribute="centerY" id="R1A-oM-UFn"/>
                                                 <constraint firstItem="C6D-RZ-XUA" firstAttribute="leading" secondItem="cKg-zq-8mi" secondAttribute="leadingMargin" id="pLu-22-6LS"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>

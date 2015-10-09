@@ -12,8 +12,6 @@ class ChapterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var chapterCellLabel: UILabel!
     
-    
-
     var chapter: String? {
         didSet {
             updateUI()
@@ -26,8 +24,6 @@ class ChapterTableViewCell: UITableViewCell {
             chapterCellLabel.text = chapter
         }
     }
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

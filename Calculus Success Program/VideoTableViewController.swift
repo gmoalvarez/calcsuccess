@@ -17,10 +17,8 @@ class VideoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 {
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 30
-        }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 30
         loadTable()
     }
     
@@ -39,10 +37,10 @@ class VideoTableViewController: UITableViewController {
             } catch {
                 fatalError()
             }
+            
             if let videoList = parsedObject as? [Dictionary<String,String>] {
                 let videoListForChapter = videoList.filter {$0["chapter"] == self.currentChapter}
                 let numberOfSections = self.findMaximumSection(videoListForChapter)
-//                let numberOfVideos = videoListForChapter.count
                 self.videos = Array(count: numberOfSections,repeatedValue:[Video]())
                 for video in videoListForChapter {
                     let title = video["title"]
