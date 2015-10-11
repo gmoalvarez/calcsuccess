@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Adapted from Ray Wenderlich online tutorial for how to extract data from Json file
 class VideoListManager {
     
     class func getVideoNameAndURLWithSuccess(success: ((data: NSData) -> Void)) {

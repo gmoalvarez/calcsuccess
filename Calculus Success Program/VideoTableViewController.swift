@@ -116,21 +116,73 @@ class VideoTableViewController: UITableViewController {
         return videos[section].first?.title
     }
     
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        //Code to save Video to Documents directory goes here
+        let currentVideo = videos[indexPath.section][indexPath.row]
+
+        guard let url = currentVideo.url else {
+            print("Video not found...url is invalid")
+            return
+        }
+        
+        let urlRequest = NSURLRequest(URL: url)
+        NSURLConnection.sendAsynchronousRequest(urlRequest,
+               queue: NSOperationQueue.mainQueue() ) { (response, data, error) -> Void in
+               
+//                guard error != nil  else {
+//                    print("There was an error \(error)")
+//                    return
+//                }
+//                This part takes a long time. Maybe I should use multithreading here
+                guard let videoFile = data else {
+                    print("There was no video file found")
+                    return
+                }
+                
+                let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+                let fileName = currentVideo.fileName + "." + currentVideo.ext
+                let writePath = documents.stringByAppendingString("/"+fileName)
+                NSFileManager.defaultManager().createFileAtPath(writePath, contents: videoFile, attributes: nil)
+//                let readPath = documents.stringByAppendingString("/"+fileName)
+//                let fileExists = NSFileManager.defaultManager().fileExistsAtPath(readPath)
+//                print("Does the file exist? The answer is \(fileExists)")
+                
+        }
+    }
+    
+    
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         
-        if segue.identifier == "showVideo"{
-            if let destination = segue.destinationViewController as? VideoViewController {
-                let videoIndex = tableView.indexPathForSelectedRow
-                if let section = videoIndex?.section,
-                    let row = videoIndex?.row {
-                        if let videoURL = videos[section][row].url {
-                            destination.videoURL = videoURL
-                        }
-                }
-            }
+        guard segue.identifier == "showVideo" else {
+            print("segue identifier is not showVideo")
+            return
         }
+        
+        guard let destination = segue.destinationViewController as? VideoViewController else {
+            print("destination is not VideoViewController")
+            return
+        }
+        
+        guard let videoIndex = tableView.indexPathForSelectedRow else {
+            print("couldn't get video Index")
+            return
+        }
+        
+        let section = videoIndex.section
+        let row = videoIndex.row
+        
+        //check if file is stored locally
+        
+        
+        guard let videoURL = videos[section][row].url else {
+            print("No URL for some reason")
+            return
+        }
+        
+        destination.videoURL = videoURL
+        
     }
     
 
