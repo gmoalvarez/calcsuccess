@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoTableViewController: UITableViewController, NSURLConnectionDownloadDelegate {
+class VideoTableViewController: UITableViewController, NSURLConnectionDataDelegate {
 
     
     
@@ -44,15 +44,16 @@ class VideoTableViewController: UITableViewController, NSURLConnectionDownloadDe
                 let numberOfSections = self.findMaximumSection(videoListForChapter)
                 self.videos = Array(count: numberOfSections,repeatedValue:[Video]())
                 for video in videoListForChapter {
-                    let title = video["title"]
-                    let chapter = video["chapter"]
-                    let section = video["section"]
-                    let path = video["path"]
-                    let fileName = video["fileName"]
-                    let ext = video["extension"]
-                    let quality = self.getQualityFromSettings()
-                    let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName,quality: quality, ext:ext)
-                    let index = Int(section!)! - 1
+
+                    let videotoAdd = Video(title: video["title"],
+                        chapter: video["chapter"],
+                        section: video["section"],
+                        path: video["path"],
+                        fileName: video["fileName"],
+                        quality: self.getQualityFromSettings(),
+                        ext:video["extension"])
+                    
+                    let index = Int(video["section"]!)! - 1
                     self.videos[index].append(videotoAdd)
                 }
             }
@@ -130,6 +131,7 @@ class VideoTableViewController: UITableViewController, NSURLConnectionDownloadDe
         }
         
         let urlRequest = NSURLRequest(URL: url)
+        
         NSURLConnection.sendAsynchronousRequest(urlRequest,
                queue: NSOperationQueue.mainQueue() ) { (response, data, error) -> Void in
                
@@ -153,14 +155,8 @@ class VideoTableViewController: UITableViewController, NSURLConnectionDownloadDe
                 self.printDocuments()
         }
     }
-    
-    func connection(connection: NSURLConnection, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, expectedTotalBytes: Int64) {
-        
-    }
-    
-    func connectionDidFinishDownloading(connection: NSURLConnection, destinationURL: NSURL) {
-        
-    }
+    //This strategy won't work because it will not call delegate methods until file has already downloaded.
+    //Back to NSURLSession again
     
     func printDocuments() {
         //http://stackoverflow.com/questions/27721418/ios-swift-getting-list-of-files-in-documents-folder
