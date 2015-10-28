@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoTableViewController: UITableViewController, NSURLConnectionDataDelegate {
+class VideoTableViewController: UITableViewController, NSURLSessionDownloadDelegate {
 
     
     
@@ -102,7 +102,23 @@ class VideoTableViewController: UITableViewController, NSURLConnectionDataDelega
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VideoCell", forIndexPath: indexPath) as! TableViewCell
 
-        cell.video = videos[indexPath.section][indexPath.row]
+        let currentVideo = videos[indexPath.section][indexPath.row]
+        
+        if currentVideo.downloading {
+            
+            guard let progress = currentVideo.downloadProgress else {
+                print("video marked as downloading but there is no progress")
+                return cell
+            }
+            
+            cell.progress = progress
+            
+        } else if currentVideo.saved {
+            cell.progressView.hidden = true
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
+        
+        cell.video = currentVideo
 
         return cell
     }
@@ -123,40 +139,59 @@ class VideoTableViewController: UITableViewController, NSURLConnectionDataDelega
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         //Code to save Video to Documents directory goes here
         selectedIndexPath = indexPath
+        //Code to save Video to Documents directory goes here
+        
         let currentVideo = videos[indexPath.section][indexPath.row]
-
+        
+        guard currentVideo.saved == false else {
+            print("Video is already saved")
+            return
+        }
+        
         guard let url = currentVideo.url else {
             print("Video not found...url is invalid")
             return
         }
         
-        let urlRequest = NSURLRequest(URL: url)
-        
-        NSURLConnection.sendAsynchronousRequest(urlRequest,
-               queue: NSOperationQueue.mainQueue() ) { (response, data, error) -> Void in
-               
-//                guard error != nil  else {
-//                    print("There was an error \(error)")
-//                    return
-//                }
-//                This part takes a long time. Maybe I should use multithreading here
-                guard let videoFile = data else {
-                    print("There was no video file found")
-                    return
-                }
-                
-                let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-                let fileName = currentVideo.fileName + "." + currentVideo.ext
-                let writePath = documents.stringByAppendingString("/"+fileName)
-                NSFileManager.defaultManager().createFileAtPath(writePath, contents: videoFile, attributes: nil)
-//                let readPath = documents.stringByAppendingString("/"+fileName)
-//                let fileExists = NSFileManager.defaultManager().fileExistsAtPath(readPath)
-//                print("Does the file exist? The answer is \(fileExists)")
-                self.printDocuments()
+        guard currentVideo.downloading == false else {
+            print("Video is already downloading")
+            return
         }
+        
+        currentVideo.downloading = true
+
+        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate: self,
+            delegateQueue: NSOperationQueue.mainQueue())
+        
+        let downloadTask = session.downloadTaskWithURL(url)
+        downloadTask.resume()
+
     }
-    //This strategy won't work because it will not call delegate methods until file has already downloaded.
-    //Back to NSURLSession again
+    
+    //MARK: - NSURLSessionDownloadDelegate Methods
+    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        let currentVideo = videos[selectedIndexPath.section][selectedIndexPath.row]
+        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        currentVideo.downloadProgress = progress
+        if currentVideo.downloadProgress == 1 {
+            currentVideo.saved = true
+            currentVideo.downloading = false
+        }
+        print(progress) //this works and shows progress
+        tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: UITableViewRowAnimation.None)
+    }
+    
+    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
+        print("The location of the file is \(location)")
+        printDocuments()
+        
+    }
+    
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+        
+    }
+    
     
     func printDocuments() {
         //http://stackoverflow.com/questions/27721418/ios-swift-getting-list-of-files-in-documents-folder
