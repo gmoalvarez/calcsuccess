@@ -12,6 +12,8 @@ class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var videoTitleLabel: UILabel!
     
+    @IBOutlet weak var progressView: UIProgressView!
+    
     var video: Video? {
         didSet {
             updateUI()
@@ -20,6 +22,10 @@ class TableViewCell: UITableViewCell {
     
     private func updateUI() {
         videoTitleLabel.text = video?.title
+        if let progress = video?.downloadProgress {
+            progressView.progress = progress
+            progressView.hidden = false
+        }
     }
     
     override func awakeFromNib() {

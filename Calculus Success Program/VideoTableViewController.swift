@@ -8,13 +8,14 @@
 
 import UIKit
 
-class VideoTableViewController: UITableViewController {
+class VideoTableViewController: UITableViewController, NSURLConnectionDownloadDelegate {
 
     
     
     var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]()
-    
+    var selectedIndexPath:NSIndexPath!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -116,8 +117,11 @@ class VideoTableViewController: UITableViewController {
         return videos[section].first?.title
     }
     
+    //MARK: - Code to download files
+    
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         //Code to save Video to Documents directory goes here
+        selectedIndexPath = indexPath
         let currentVideo = videos[indexPath.section][indexPath.row]
 
         guard let url = currentVideo.url else {
@@ -148,6 +152,14 @@ class VideoTableViewController: UITableViewController {
 //                print("Does the file exist? The answer is \(fileExists)")
                 self.printDocuments()
         }
+    }
+    
+    func connection(connection: NSURLConnection, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, expectedTotalBytes: Int64) {
+        
+    }
+    
+    func connectionDidFinishDownloading(connection: NSURLConnection, destinationURL: NSURL) {
+        
     }
     
     func printDocuments() {
