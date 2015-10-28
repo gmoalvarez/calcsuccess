@@ -146,10 +146,35 @@ class VideoTableViewController: UITableViewController {
 //                let readPath = documents.stringByAppendingString("/"+fileName)
 //                let fileExists = NSFileManager.defaultManager().fileExistsAtPath(readPath)
 //                print("Does the file exist? The answer is \(fileExists)")
-                
+                self.printDocuments()
         }
     }
     
+    func printDocuments() {
+        //http://stackoverflow.com/questions/27721418/ios-swift-getting-list-of-files-in-documents-folder
+        // We need just to get the documents folder url
+        let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        
+        // now lets get the directory contents (including folders)
+        do {
+            let directoryContents = try NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsUrl, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())
+            print(directoryContents)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        // if you want to filter the directory contents you can do like this:
+        
+        
+//        do {
+//            let directoryUrls = try  NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsUrl, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())
+//            print(directoryUrls)
+//            let mp3Files = directoryUrls.filter(){ $0.pathExtension == "mp3" }.map{ $0.lastPathComponent }
+//            print("MP3 FILES:\n" + mp3Files.description)
+//        } catch let error as NSError {
+//            print(error.localizedDescription)
+//        }
+    }
     
     // MARK: - Navigation
 
