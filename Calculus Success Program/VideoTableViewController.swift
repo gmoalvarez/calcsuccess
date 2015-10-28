@@ -11,7 +11,7 @@ import UIKit
 class VideoTableViewController: UITableViewController, NSURLSessionDownloadDelegate {
 
     
-    
+
     var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]()
     var selectedIndexPath:NSIndexPath!
@@ -135,7 +135,7 @@ class VideoTableViewController: UITableViewController, NSURLSessionDownloadDeleg
     }
     
     //MARK: - Code to download files
-    
+    //TODO: - IDEA to download files and show progress. Create an array of progress values that is initialized to 0 if not downloaded and 1 if they are saved. This corresponds to the download progress. This array, or a separate array, should contain the video information necessary to know the title so that the file can be saved properly.
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         //Code to save Video to Documents directory goes here
         selectedIndexPath = indexPath
@@ -143,7 +143,7 @@ class VideoTableViewController: UITableViewController, NSURLSessionDownloadDeleg
         
         let currentVideo = videos[indexPath.section][indexPath.row]
         
-        guard currentVideo.saved == false else {
+        guard !currentVideo.saved else {
             print("Video is already saved")
             return
         }
@@ -153,7 +153,7 @@ class VideoTableViewController: UITableViewController, NSURLSessionDownloadDeleg
             return
         }
         
-        guard currentVideo.downloading == false else {
+        guard !currentVideo.downloading else {
             print("Video is already downloading")
             return
         }
@@ -183,7 +183,8 @@ class VideoTableViewController: UITableViewController, NSURLSessionDownloadDeleg
     }
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        print("The location of the file is \(location)")
+        
+        
         printDocuments()
         
     }
@@ -191,7 +192,6 @@ class VideoTableViewController: UITableViewController, NSURLSessionDownloadDeleg
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
         
     }
-    
     
     func printDocuments() {
         //http://stackoverflow.com/questions/27721418/ios-swift-getting-list-of-files-in-documents-folder
