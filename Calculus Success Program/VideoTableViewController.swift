@@ -7,10 +7,9 @@
 //
 
 import UIKit
+import Alamofire
 
 class VideoTableViewController: UITableViewController {
-
-    
     
     var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]()
@@ -99,8 +98,15 @@ class VideoTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VideoCell", forIndexPath: indexPath) as! TableViewCell
+        
+        let currentVideo = videos[indexPath.section][indexPath.row]
 
-        cell.video = videos[indexPath.section][indexPath.row]
+        if currentVideo.downloadStatus.isDownloading {
+            cell.progressView.progress = currentVideo.downloadStatus.downloadProgress
+        } else if currentVideo.downloadStatus.isSaved {
+            cell.accessoryType = .Checkmark
+        }
+        cell.video = currentVideo
 
         return cell
     }
@@ -120,36 +126,77 @@ class VideoTableViewController: UITableViewController {
         //Code to save Video to Documents directory goes here
         let currentVideo = videos[indexPath.section][indexPath.row]
 
+        guard !currentVideo.downloadStatus.isSaved else {
+            print("Video is already saved")
+            return
+        }
+        
         guard let url = currentVideo.url else {
             print("Video not found...url is invalid")
             return
         }
         
-        let urlRequest = NSURLRequest(URL: url)
-        NSURLConnection.sendAsynchronousRequest(urlRequest,
-               queue: NSOperationQueue.mainQueue() ) { (response, data, error) -> Void in
-               
-//                guard error != nil  else {
-//                    print("There was an error \(error)")
+        let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
+        
+        Alamofire.download(.GET, url, destination: destination)
+        .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
+            print(progress)
+            currentVideo.downloadStatus.isDownloading = true
+            currentVideo.downloadStatus.downloadProgress = progress
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }.response { _,_,_, error in
+            if let error = error {
+                print("Failed with error: \(error)")
+            } else {
+                print("Downloaded file successfully")
+                currentVideo.downloadStatus.isDownloading = false
+                currentVideo.downloadStatus.isSaved = true
+            }
+            print("Files currently in the documents directory:")
+            self.printDocumentsDirectoryContents()
+        }
+        
+//        let urlRequest = NSURLRequest(URL: url)
+//        NSURLConnection.sendAsynchronousRequest(urlRequest,
+//               queue: NSOperationQueue.mainQueue() ) { (response, data, error) -> Void in
+//               
+////                guard error != nil  else {
+////                    print("There was an error \(error)")
+////                    return
+////                }
+////                This part takes a long time. Maybe I should use multithreading here
+//                guard let videoFile = data else {
+//                    print("There was no video file found")
 //                    return
 //                }
-//                This part takes a long time. Maybe I should use multithreading here
-                guard let videoFile = data else {
-                    print("There was no video file found")
-                    return
-                }
-                
-                let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-                let fileName = currentVideo.fileName + "." + currentVideo.ext
-                let writePath = documents.stringByAppendingString("/"+fileName)
-                NSFileManager.defaultManager().createFileAtPath(writePath, contents: videoFile, attributes: nil)
-//                let readPath = documents.stringByAppendingString("/"+fileName)
-//                let fileExists = NSFileManager.defaultManager().fileExistsAtPath(readPath)
-//                print("Does the file exist? The answer is \(fileExists)")
-                
-        }
+//                
+//                let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+//                let fileName = currentVideo.fileName + "." + currentVideo.ext
+//                let writePath = documents.stringByAppendingString("/"+fileName)
+//                NSFileManager.defaultManager().createFileAtPath(writePath, contents: videoFile, attributes: nil)
+////                let readPath = documents.stringByAppendingString("/"+fileName)
+////                let fileExists = NSFileManager.defaultManager().fileExistsAtPath(readPath)
+////                print("Does the file exist? The answer is \(fileExists)")
+//                
+//        }
     }
     
+    func printDocumentsDirectoryContents() {
+        let manager = NSFileManager.defaultManager()
+        let documentsURL = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        
+        do {
+            let directoryContents = try manager.contentsOfDirectoryAtURL(documentsURL,
+                includingPropertiesForKeys: nil,
+                options: NSDirectoryEnumerationOptions())
+            print(directoryContents)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
     
     // MARK: - Navigation
 
@@ -172,18 +219,37 @@ class VideoTableViewController: UITableViewController {
         
         let section = videoIndex.section
         let row = videoIndex.row
+        let currentVideo = videos[section][row]
+        //TODO: - check if file is stored locally
+        let videoURL = getUrlOfVideo(currentVideo)
         
-        //check if file is stored locally
-        
-        
-        guard let videoURL = videos[section][row].url else {
-            print("No URL for some reason")
-            return
-        }
+//        guard let videoURL = videos[section][row].url else {
+//            print("No URL for some reason")
+//            return
+//        }
         
         destination.videoURL = videoURL
         
     }
     
+    func getUrlOfVideo(video: Video) -> NSURL{
+        if video.downloadStatus.isSaved {
+            let manager = NSFileManager.defaultManager()
+            let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+            var fileName:String
+            if getQualityFromSettings() == "HD" {
+                fileName = video.fileName+"-HD"
+            } else {
+                fileName = video.fileName
+            }
+            let filePath = documents+"/"+fileName+"."+video.ext
+            let filePathURL = NSURL(fileURLWithPath: filePath,isDirectory: false)
+            print(filePath)
+            return filePathURL
 
+        }
+        return video.url!
+    }
+    
+    
 }

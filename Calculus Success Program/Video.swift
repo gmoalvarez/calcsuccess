@@ -22,6 +22,7 @@ class Video:NSObject {
     let ext:String
     let url:NSURL?
     let quality:String
+    var downloadStatus:DownloadStatus
     override var description:String {
         return title
     }
@@ -35,6 +36,7 @@ class Video:NSObject {
         self.path = ""
         self.quality = ""
         self.url = NSURL(string: "")
+        self.downloadStatus = DownloadStatus()
     }
     
     init(title: String?,chapter:String?, section: String?, path: String?, fileName: String?, quality: String?, ext:String?) {
@@ -56,5 +58,6 @@ class Video:NSObject {
             url = self.path + self.fileName + "." + self.ext
         }
         self.url = NSURL(string: url)
+        self.downloadStatus = DownloadStatus()
     }
 }

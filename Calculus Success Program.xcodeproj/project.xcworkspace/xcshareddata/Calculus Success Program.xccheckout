@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2AA47BE8-6D94-4145-AEA9-5F326F0A014B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Calculus Success Program</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BA2E490CFE1C4A4575036CC82D9A3095B144AFA3</key>
+		<string>https://github.com/gmoalvarez/calcsuccess.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Calculus Success Program.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BA2E490CFE1C4A4575036CC82D9A3095B144AFA3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/gmoalvarez/calcsuccess.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BA2E490CFE1C4A4575036CC82D9A3095B144AFA3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BA2E490CFE1C4A4575036CC82D9A3095B144AFA3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Calculus%20Success%20Program</string>
+		</dict>
+	</array>
+</dict>
+</plist>
