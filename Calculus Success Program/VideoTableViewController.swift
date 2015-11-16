@@ -141,12 +141,10 @@ class VideoTableViewController: UITableViewController {
         Alamofire.download(.GET, url, destination: destination)
         .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
             let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
-            print(progress)
+//            print(progress)
             currentVideo.downloadStatus.isDownloading = true
             currentVideo.downloadStatus.downloadProgress = progress
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
-            }
+            self.updateProgressBar(progress)
         }.response { _,_,_, error in
             if let error = error {
                 print("Failed with error: \(error)")
@@ -154,6 +152,9 @@ class VideoTableViewController: UITableViewController {
                 print("Downloaded file successfully")
                 currentVideo.downloadStatus.isDownloading = false
                 currentVideo.downloadStatus.isSaved = true
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    self.tableView.reloadData()
+//                }
             }
             print("Files currently in the documents directory:")
             self.printDocumentsDirectoryContents()
@@ -182,6 +183,18 @@ class VideoTableViewController: UITableViewController {
 ////                print("Does the file exist? The answer is \(fileExists)")
 //                
 //        }
+    }
+    
+    func updateProgressBar(progress: Float) {
+        let progressTruncated = Int(progress * 10000.0)
+        
+        if progressTruncated % 50 == 0 {
+            print(progressTruncated)
+            print(progress)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func printDocumentsDirectoryContents() {

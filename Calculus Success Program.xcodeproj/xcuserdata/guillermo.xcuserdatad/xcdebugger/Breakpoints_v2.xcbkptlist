@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calculus Success Program/VideoTableViewController.swift"
-            timestampString = "469396202.32033"
+            timestampString = "469399581.878473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434">
+            startingLineNumber = "444"
+            endingLineNumber = "444">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calculus Success Program/VideoTableViewController.swift"
-            timestampString = "469396202.32033"
+            timestampString = "469399581.878473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391">
+            startingLineNumber = "401"
+            endingLineNumber = "401">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -277,11 +277,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calculus Success Program/VideoTableViewController.swift"
-            timestampString = "469395853.174497"
+            timestampString = "469399581.878473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "getUrlOfVideo(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -309,13 +309,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calculus Success Program/VideoTableViewController.swift"
-            timestampString = "469396486.24908"
+            timestampString = "469399581.878473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "getUrlOfVideo(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calculus Success Program/VideoTableViewController.swift"
+            timestampString = "469398538.719873"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "updateProgressBar(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calculus Success Program/VideoTableViewController.swift"
+            timestampString = "469399581.878473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "updateProgressBar(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calculus_Success_Program.VideoTableViewController.updateProgressBar (Calculus_Success_Program.VideoTableViewController)(Swift.Float) -&gt; ()"
+                  moduleName = "Calculus Success Program"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guillermo/Dropbox/Student%20Files/iOS%20programs/Calculus%20Success%20Program/Calculus%20Success%20Program/VideoTableViewController.swift"
+                  timestampString = "469398584.010868"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calculus_Success_Program.VideoTableViewController.(updateProgressBar (Calculus_Success_Program.VideoTableViewController) -&gt; (Swift.Float) -&gt; ()).(closure #1)"
+                  moduleName = "Calculus Success Program"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guillermo/Dropbox/Student%20Files/iOS%20programs/Calculus%20Success%20Program/Calculus%20Success%20Program/VideoTableViewController.swift"
+                  timestampString = "469398584.011026"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
