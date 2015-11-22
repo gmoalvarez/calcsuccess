@@ -12,7 +12,7 @@ import Alamofire
 class VideoTableViewController: UITableViewController {
     
     var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
-    var videos = [[Video]]()
+    var videos = [[Video]]() 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,11 +101,14 @@ class VideoTableViewController: UITableViewController {
         
         let currentVideo = videos[indexPath.section][indexPath.row]
 
+        cell.accessoryView?.hidden = false
+        
         if currentVideo.downloadStatus.isDownloading {
             cell.progressView.progress = currentVideo.downloadStatus.downloadProgress
         } else if currentVideo.downloadStatus.isSaved {
             cell.accessoryType = .Checkmark
         }
+        
         cell.video = currentVideo
 
         return cell
@@ -160,35 +163,12 @@ class VideoTableViewController: UITableViewController {
             self.printDocumentsDirectoryContents()
         }
         
-//        let urlRequest = NSURLRequest(URL: url)
-//        NSURLConnection.sendAsynchronousRequest(urlRequest,
-//               queue: NSOperationQueue.mainQueue() ) { (response, data, error) -> Void in
-//               
-////                guard error != nil  else {
-////                    print("There was an error \(error)")
-////                    return
-////                }
-////                This part takes a long time. Maybe I should use multithreading here
-//                guard let videoFile = data else {
-//                    print("There was no video file found")
-//                    return
-//                }
-//                
-//                let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-//                let fileName = currentVideo.fileName + "." + currentVideo.ext
-//                let writePath = documents.stringByAppendingString("/"+fileName)
-//                NSFileManager.defaultManager().createFileAtPath(writePath, contents: videoFile, attributes: nil)
-////                let readPath = documents.stringByAppendingString("/"+fileName)
-////                let fileExists = NSFileManager.defaultManager().fileExistsAtPath(readPath)
-////                print("Does the file exist? The answer is \(fileExists)")
-//                
-//        }
     }
     
     func updateProgressBar(progress: Float) {
         let progressTruncated = Int(progress * 10000.0)
         
-        if progressTruncated % 50 == 0 {
+        if progressTruncated % 50 == 0 || progress < 0.005 {
             print(progressTruncated)
             print(progress)
             dispatch_async(dispatch_get_main_queue()) {
