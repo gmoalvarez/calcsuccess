@@ -11,6 +11,8 @@ import Alamofire
 
 class VideoTableViewController: UITableViewController {
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
     var videos = [[Video]]() 
     
@@ -105,6 +107,10 @@ class VideoTableViewController: UITableViewController {
         cell.progressView.hidden = false
         cell.activityIndicator.hidden = true
         
+        cell.downloadButton.addTarget(self,
+            action: "downloadButtonPressed:",
+            forControlEvents: UIControlEvents.TouchUpInside)
+        
         if currentVideo.downloadStatus.isDownloading {
             cell.progressView.progress = currentVideo.downloadStatus.downloadProgress
         } else if currentVideo.downloadStatus.isSaved {
@@ -116,6 +122,55 @@ class VideoTableViewController: UITableViewController {
         cell.video = currentVideo
 
         return cell
+    }
+    
+    func downloadButtonPressed(sender: UIButton) {
+        let buttonPosition = sender.convertPoint(CGPointZero, toView: self.tableView)
+        guard let indexPath = self.tableView.indexPathForRowAtPoint(buttonPosition) else {
+            print("Error getting index path from button press")
+            return
+        }
+        
+        let section = indexPath.section
+        let row = indexPath.row
+        print("Button pressed at section \(section) and row \(row)")
+        
+        //Save Video to Documents directory
+        let currentVideo = videos[section][row]
+        
+        guard !currentVideo.downloadStatus.isSaved else {
+            print("Video is already saved")
+            return
+        }
+        
+        guard let url = currentVideo.url else {
+            print("Video not found...url is invalid")
+            return
+        }
+        
+        let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
+        
+        Alamofire.download(.GET, url, destination: destination)
+            .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
+                //            print(progress)
+                currentVideo.downloadStatus.isDownloading = true
+                currentVideo.downloadStatus.downloadProgress = progress
+                self.updateProgressBar(progress)
+            }.response { _,_,_, error in
+                if let error = error {
+                    print("Failed with error: \(error)")
+                } else {
+                    print("Downloaded file successfully")
+                    currentVideo.downloadStatus.isDownloading = false
+                    currentVideo.downloadStatus.isSaved = true
+                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        self.tableView.reloadData()
+                    }
+                }
+                print("Files currently in the documents directory:")
+                self.printDocumentsDirectoryContents()
+        }
     }
     
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
@@ -130,50 +185,13 @@ class VideoTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        //Code to save Video to Documents directory goes here
-        let currentVideo = videos[indexPath.section][indexPath.row]
-
-        guard !currentVideo.downloadStatus.isSaved else {
-            print("Video is already saved")
-            return
-        }
-        
-        guard let url = currentVideo.url else {
-            print("Video not found...url is invalid")
-            return
-        }
-        
-        let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
-        
-        Alamofire.download(.GET, url, destination: destination)
-        .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-            let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
-//            print(progress)
-            currentVideo.downloadStatus.isDownloading = true
-            currentVideo.downloadStatus.downloadProgress = progress
-            self.updateProgressBar(progress)
-        }.response { _,_,_, error in
-            if let error = error {
-                print("Failed with error: \(error)")
-            } else {
-                print("Downloaded file successfully")
-                currentVideo.downloadStatus.isDownloading = false
-                currentVideo.downloadStatus.isSaved = true
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    self.tableView.reloadData()
-//                }
-            }
-            print("Files currently in the documents directory:")
-            self.printDocumentsDirectoryContents()
-        }
         
     }
     
     func updateProgressBar(progress: Float) {
         let progressTruncated = Int(progress * 10000.0)
         
-        if progressTruncated % 50 == 0 || progress < 0.005 {
-            print(progressTruncated)
+        if progressTruncated % 100 == 0 || progress < 0.005 {
             print(progress)
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
