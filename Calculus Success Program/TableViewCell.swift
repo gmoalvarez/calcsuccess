@@ -15,6 +15,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var customAccessoryView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var checkmarkImageView: UIImageView!
     
     var video: Video? {
         didSet {
@@ -27,17 +28,27 @@ class TableViewCell: UITableViewCell {
             print("eror: video should not be nil")
             return
         }
-        
-        
-        
+    
         videoTitleLabel.text = video.title
-//        progressView.progress = (video?.downloadStatus.downloadProgress)!
-//        if progressView.progress == 1.0 ||
-//        progressView.progress == 0.0 {
-//            progressView.hidden = true
-//        } else {
-//            progressView.hidden = false
-//        }
+        if video.downloadStatus.isDownloading {
+            progressView.hidden = false
+            checkmarkImageView.hidden = true
+            progressView.progress = video.downloadStatus.downloadProgress
+            downloadButton.hidden = true
+            activityIndicator.hidden = false
+            activityIndicator.startAnimating()
+        } else {
+            checkmarkImageView.hidden = true
+            progressView.hidden = true
+            activityIndicator.stopAnimating()
+        }
+        
+        if video.downloadStatus.isSaved {
+            activityIndicator.stopAnimating()
+            progressView.hidden = true
+            downloadButton.hidden = true
+            checkmarkImageView.hidden = false
+        }
         
     }
     

@@ -68,7 +68,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="89" id="ObE-ev-jN5" customClass="TableViewCell" customModule="Calculus_Success_Program" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="49.5" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ObE-ev-jN5" id="pcT-Bu-CU7">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="88.5"/>
@@ -97,10 +97,14 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="download-100.png"/>
                                                 </button>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZxL-Q2-Nxs">
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZxL-Q2-Nxs">
                                                     <rect key="frame" x="6" y="6" width="20" height="20"/>
                                                     <animations/>
                                                 </activityIndicatorView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Checkmark-100.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Kt-Km-fwP" userLabel="checkmark">
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                    <animations/>
+                                                </imageView>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -139,6 +143,7 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="activityIndicator" destination="ZxL-Q2-Nxs" id="wgX-Pb-H1Q"/>
+                                    <outlet property="checkmarkImageView" destination="5Kt-Km-fwP" id="T9i-TS-bo9"/>
                                     <outlet property="customAccessoryView" destination="dMj-Tb-F0f" id="hHM-0m-BT3"/>
                                     <outlet property="downloadButton" destination="BWS-0S-7XK" id="FXw-42-akA"/>
                                     <outlet property="progressView" destination="y4o-MX-ydC" id="yB2-Vi-S4a"/>
@@ -285,6 +290,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Checkmark-100.png" width="100" height="100"/>
         <image name="Settings-25.png" width="25" height="25"/>
         <image name="download-100.png" width="100" height="100"/>
     </resources>
