@@ -13,8 +13,8 @@ class VideoTableViewController: UITableViewController {
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    var currentChapter = "0" //Initialized to 0 but set to 1-6 when segue occurs
-    var videos = [[Video]]() 
+    var currentChapter = String() //Initialized to 0 but set to 1-6 when segue occurs
+    var videos = [[Video]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,10 @@ class VideoTableViewController: UITableViewController {
                     let ext = video["extension"]
                     let quality = self.getQualityFromSettings()
                     let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName,quality: quality, ext:ext)
+                    //Get download status from NSUserDefaults
+                    videotoAdd.downloadStatus.isSaved = self.userDefaults.boolForKey(videotoAdd.fileName+"-saved")
+                    videotoAdd.downloadStatus.isDownloading = self.userDefaults.boolForKey(videotoAdd.fileName+"-downloading")
+                    // create videos 2D array
                     let index = Int(section!)! - 1
                     self.videos[index].append(videotoAdd)
                 }
@@ -148,6 +152,11 @@ class VideoTableViewController: UITableViewController {
             return
         }
         
+        let downloadingKey = currentVideo.fileName+"-downloading"
+        let savedKey = currentVideo.fileName+"-saved"
+        
+        userDefaults.setBool(true, forKey: downloadingKey)
+        
         let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
         
         Alamofire.download(.GET, url, destination: destination)
@@ -163,7 +172,11 @@ class VideoTableViewController: UITableViewController {
                 } else {
                     print("Downloaded file successfully")
                     currentVideo.downloadStatus.isDownloading = false
+                    self.userDefaults.setBool(false, forKey: downloadingKey)
+                    
                     currentVideo.downloadStatus.isSaved = true
+                    self.userDefaults.setBool(true, forKey: savedKey)
+                    
                     dispatch_async(dispatch_get_main_queue()) { () -> Void in
                         self.tableView.reloadData()
                     }
