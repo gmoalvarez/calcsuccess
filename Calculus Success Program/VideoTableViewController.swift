@@ -101,12 +101,14 @@ class VideoTableViewController: UITableViewController {
         
         let currentVideo = videos[indexPath.section][indexPath.row]
 
-        cell.accessoryView?.hidden = false
-        
+        cell.downloadButton.hidden = false
+        cell.progressView.hidden = false
         if currentVideo.downloadStatus.isDownloading {
             cell.progressView.progress = currentVideo.downloadStatus.downloadProgress
         } else if currentVideo.downloadStatus.isSaved {
-            cell.accessoryType = .Checkmark
+            if let image = UIImage(contentsOfFile: "Checkmark-32.png") {
+                cell.downloadButton.imageView?.image = image
+            }
         }
         
         cell.video = currentVideo
