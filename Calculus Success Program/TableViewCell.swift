@@ -13,6 +13,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var customAccessoryView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var video: Video? {
         didSet {
@@ -21,14 +23,21 @@ class TableViewCell: UITableViewCell {
     }
     
     private func updateUI() {
-        videoTitleLabel.text = video?.title
-        progressView.progress = (video?.downloadStatus.downloadProgress)!
-        if progressView.progress == 1.0 ||
-        progressView.progress == 0.0 {
-            progressView.hidden = true
-        } else {
-            progressView.hidden = false
+        guard let video = video else {
+            print("eror: video should not be nil")
+            return
         }
+        
+        
+        
+        videoTitleLabel.text = video.title
+//        progressView.progress = (video?.downloadStatus.downloadProgress)!
+//        if progressView.progress == 1.0 ||
+//        progressView.progress == 0.0 {
+//            progressView.hidden = true
+//        } else {
+//            progressView.hidden = false
+//        }
         
     }
     

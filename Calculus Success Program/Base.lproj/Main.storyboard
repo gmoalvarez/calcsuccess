@@ -68,48 +68,78 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="89" id="ObE-ev-jN5" customClass="TableViewCell" customModule="Calculus_Success_Program" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49.5" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="50" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ObE-ev-jN5" id="pcT-Bu-CU7">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="88.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="64K-Yg-pyX">
-                                            <rect key="frame" x="8" y="8" width="511" height="62.5"/>
+                                            <rect key="frame" x="8" y="8" width="511" height="52"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-MX-ydC">
-                                            <rect key="frame" x="8" y="78.5" width="551" height="2"/>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-MX-ydC">
+                                            <rect key="frame" x="8" y="68" width="551" height="13"/>
                                             <animations/>
                                         </progressView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWS-0S-7XK">
-                                            <rect key="frame" x="527" y="23.5" width="32" height="32"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMj-Tb-F0f">
+                                            <rect key="frame" x="527" y="28" width="32" height="32"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWS-0S-7XK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="KfG-Uz-uD6"/>
+                                                        <constraint firstAttribute="width" constant="32" id="vzr-E4-TlY"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="download-100.png"/>
+                                                </button>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZxL-Q2-Nxs">
+                                                    <rect key="frame" x="6" y="6" width="20" height="20"/>
+                                                    <animations/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                             <animations/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="KfG-Uz-uD6"/>
-                                                <constraint firstAttribute="width" constant="32" id="vzr-E4-TlY"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="leading" secondItem="dMj-Tb-F0f" secondAttribute="leading" id="2kZ-1Q-CqP"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="top" secondItem="dMj-Tb-F0f" secondAttribute="top" id="6R1-PB-vqI"/>
+                                                <constraint firstAttribute="bottom" secondItem="BWS-0S-7XK" secondAttribute="bottom" id="A9c-A5-XQV"/>
+                                                <constraint firstAttribute="trailing" secondItem="BWS-0S-7XK" secondAttribute="trailing" id="OZh-tA-4xd"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="centerX" secondItem="dMj-Tb-F0f" secondAttribute="centerX" id="UCO-sg-db7"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="leading" secondItem="dMj-Tb-F0f" secondAttribute="leading" id="Vu9-g5-y2X"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="leading" secondItem="dMj-Tb-F0f" secondAttribute="leading" id="aaC-N5-cWI"/>
+                                                <constraint firstAttribute="bottom" secondItem="BWS-0S-7XK" secondAttribute="bottom" id="cIO-yU-w4l"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="leading" secondItem="dMj-Tb-F0f" secondAttribute="leading" id="g3r-V2-Fia"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="top" secondItem="dMj-Tb-F0f" secondAttribute="top" id="hZk-j6-mzd"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="top" secondItem="dMj-Tb-F0f" secondAttribute="top" id="l48-JA-iLl"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="top" secondItem="dMj-Tb-F0f" secondAttribute="top" id="lzp-bW-mPz"/>
+                                                <constraint firstAttribute="trailing" secondItem="BWS-0S-7XK" secondAttribute="trailing" id="vIZ-Nz-If9"/>
+                                                <constraint firstItem="BWS-0S-7XK" firstAttribute="centerY" secondItem="dMj-Tb-F0f" secondAttribute="centerY" id="zGP-s8-1LD"/>
                                             </constraints>
-                                            <state key="normal" title="Button" image="download-32.png"/>
-                                        </button>
+                                        </view>
                                     </subviews>
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="y4o-MX-ydC" firstAttribute="top" secondItem="64K-Yg-pyX" secondAttribute="bottom" constant="8" symbolic="YES" id="Bfe-ia-U7j"/>
-                                        <constraint firstItem="BWS-0S-7XK" firstAttribute="centerY" secondItem="64K-Yg-pyX" secondAttribute="centerY" id="C6M-cn-Ai2"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="BWS-0S-7XK" secondAttribute="trailing" id="FCc-Z0-NZY"/>
+                                        <constraint firstItem="dMj-Tb-F0f" firstAttribute="trailing" secondItem="y4o-MX-ydC" secondAttribute="trailing" id="CuC-d8-hDy"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="y4o-MX-ydC" secondAttribute="bottom" id="Hyi-rz-j9d"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="64K-Yg-pyX" secondAttribute="leading" id="PcB-8r-xPs"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="y4o-MX-ydC" secondAttribute="leading" id="QxE-uo-x5d"/>
                                         <constraint firstAttribute="topMargin" secondItem="64K-Yg-pyX" secondAttribute="top" id="awp-bx-7Nb"/>
-                                        <constraint firstItem="BWS-0S-7XK" firstAttribute="leading" secondItem="64K-Yg-pyX" secondAttribute="trailing" constant="8" symbolic="YES" id="qEB-Q5-N3H"/>
+                                        <constraint firstItem="y4o-MX-ydC" firstAttribute="top" secondItem="dMj-Tb-F0f" secondAttribute="bottom" constant="8" symbolic="YES" id="gUa-yI-fav"/>
+                                        <constraint firstItem="dMj-Tb-F0f" firstAttribute="leading" secondItem="64K-Yg-pyX" secondAttribute="trailing" constant="8" symbolic="YES" id="hwF-fX-xx3"/>
+                                        <constraint firstItem="dMj-Tb-F0f" firstAttribute="centerY" secondItem="pcT-Bu-CU7" secondAttribute="centerY" id="z2V-yC-agb"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="y4o-MX-ydC" secondAttribute="trailing" id="zo0-9N-MOr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="ZxL-Q2-Nxs" id="wgX-Pb-H1Q"/>
+                                    <outlet property="customAccessoryView" destination="dMj-Tb-F0f" id="hHM-0m-BT3"/>
                                     <outlet property="downloadButton" destination="BWS-0S-7XK" id="FXw-42-akA"/>
                                     <outlet property="progressView" destination="y4o-MX-ydC" id="yB2-Vi-S4a"/>
                                     <outlet property="videoTitleLabel" destination="64K-Yg-pyX" id="iOh-rL-PH6"/>
@@ -256,7 +286,7 @@
     </scenes>
     <resources>
         <image name="Settings-25.png" width="25" height="25"/>
-        <image name="download-32.png" width="32" height="32"/>
+        <image name="download-100.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="g7t-BJ-Xsu"/>

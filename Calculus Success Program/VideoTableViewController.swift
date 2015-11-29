@@ -103,6 +103,8 @@ class VideoTableViewController: UITableViewController {
 
         cell.downloadButton.hidden = false
         cell.progressView.hidden = false
+        cell.activityIndicator.hidden = true
+        
         if currentVideo.downloadStatus.isDownloading {
             cell.progressView.progress = currentVideo.downloadStatus.downloadProgress
         } else if currentVideo.downloadStatus.isSaved {
