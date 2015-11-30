@@ -41,6 +41,7 @@
 		B3102B401B73961600A746F4 /* calc_video_list.json in Resources */ = {isa = PBXBuildFile; fileRef = B3102B3F1B73961600A746F4 /* calc_video_list.json */; };
 		B3102B421B73F79E00A746F4 /* VideoListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3102B411B73F79E00A746F4 /* VideoListManager.swift */; };
 		B3571A9D1B9557E7000A8602 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3571A9C1B9557E7000A8602 /* SettingsTableViewController.swift */; };
+		B3BCE9771C0BF292006DA45D /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BCE9761C0BF292006DA45D /* AlertExtension.swift */; };
 		B3C939521BFA52FA0014C062 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C939451BFA525E0014C062 /* Alamofire.framework */; };
 		B3C939531BFA52FA0014C062 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3C939451BFA525E0014C062 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B3C939581BFA535B0014C062 /* DownloadStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C939571BFA535B0014C062 /* DownloadStatus.swift */; };
@@ -172,6 +173,7 @@
 		B3102B3F1B73961600A746F4 /* calc_video_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calc_video_list.json; sourceTree = "<group>"; };
 		B3102B411B73F79E00A746F4 /* VideoListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListManager.swift; sourceTree = "<group>"; };
 		B3571A9C1B9557E7000A8602 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		B3BCE9761C0BF292006DA45D /* AlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		B3C9393A1BFA525E0014C062 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		B3C939571BFA535B0014C062 /* DownloadStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadStatus.swift; sourceTree = "<group>"; };
 		B3F7DEA91B7BDA16003FFF20 /* Icon-29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@1x.png"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		B3102B101B72C06200A746F4 /* Calculus Success Program */ = {
 			isa = PBXGroup;
 			children = (
+				B3BCE9761C0BF292006DA45D /* AlertExtension.swift */,
 				B3102B371B72C2D700A746F4 /* Video.swift */,
 				B3C939571BFA535B0014C062 /* DownloadStatus.swift */,
 				B3102B3F1B73961600A746F4 /* calc_video_list.json */,
@@ -533,6 +536,7 @@
 				B3102B381B72C2D700A746F4 /* Video.swift in Sources */,
 				B3102B341B72C14300A746F4 /* TableViewCell.swift in Sources */,
 				B3102B3E1B72DF2300A746F4 /* VideoViewController.swift in Sources */,
+				B3BCE9771C0BF292006DA45D /* AlertExtension.swift in Sources */,
 				B30B03091B754A3400350C00 /* ChapterTableViewController.swift in Sources */,
 				B3102B3A1B72C36000A746F4 /* VideoTableViewController.swift in Sources */,
 				B3102B421B73F79E00A746F4 /* VideoListManager.swift in Sources */,

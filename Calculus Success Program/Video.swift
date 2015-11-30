@@ -60,4 +60,14 @@ class Video:NSObject {
         self.url = NSURL(string: url)
         self.downloadStatus = DownloadStatus()
     }
+    
+    func getHDVideoURL() -> NSURL? {
+        
+        if self.quality == "HD" {
+            return self.url
+        }
+        
+        let urlString = self.path + self.fileName + "-HD" + "." + self.ext
+        return NSURL(string: urlString)
+    }
 }

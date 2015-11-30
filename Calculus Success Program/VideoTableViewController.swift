@@ -54,7 +54,7 @@ class VideoTableViewController: UITableViewController {
                     let videotoAdd = Video(title: title, chapter: chapter, section: section, path: path, fileName: fileName,quality: quality, ext:ext)
                     //Get download status from NSUserDefaults
                     videotoAdd.downloadStatus.isSaved = self.userDefaults.boolForKey(videotoAdd.fileName+"-saved")
-                    videotoAdd.downloadStatus.isDownloading = self.userDefaults.boolForKey(videotoAdd.fileName+"-downloading")
+//                    videotoAdd.downloadStatus.isDownloading = self.userDefaults.boolForKey(videotoAdd.fileName+"-downloading")
                     // create videos 2D array
                     let index = Int(section!)! - 1
                     self.videos[index].append(videotoAdd)
@@ -113,7 +113,7 @@ class VideoTableViewController: UITableViewController {
         
         cell.downloadButton.addTarget(self,
             action: "downloadButtonPressed:",
-            forControlEvents: UIControlEvents.TouchUpInside)
+            forControlEvents: .TouchUpInside)
         
         if currentVideo.downloadStatus.isDownloading {
             cell.progressView.progress = currentVideo.downloadStatus.downloadProgress
@@ -128,7 +128,14 @@ class VideoTableViewController: UITableViewController {
         return cell
     }
     
+    var numberOfVideosCurrentlyDownloading = 0
     func downloadButtonPressed(sender: UIButton) {
+        guard numberOfVideosCurrentlyDownloading <= 2 else {
+            self.displayAlert("Exceeded maximum number of simultaneous downloads", message: "Maximum is 3")
+            return
+        }
+        
+        
         let buttonPosition = sender.convertPoint(CGPointZero, toView: self.tableView)
         guard let indexPath = self.tableView.indexPathForRowAtPoint(buttonPosition) else {
             print("Error getting index path from button press")
@@ -147,18 +154,19 @@ class VideoTableViewController: UITableViewController {
             return
         }
         
-        guard let url = currentVideo.url else {
-            print("Video not found...url is invalid")
+        guard let url = currentVideo.getHDVideoURL() else {
+            print("Video not found...url is invalid: \(currentVideo.url)")
             return
         }
         
-        let downloadingKey = currentVideo.fileName+"-downloading"
+//        let downloadingKey = currentVideo.fileName+"-downloading"
         let savedKey = currentVideo.fileName+"-saved"
         
-        userDefaults.setBool(true, forKey: downloadingKey)
+//        userDefaults.setBool(true, forKey: downloadingKey)
         
         let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
-        
+        numberOfVideosCurrentlyDownloading++
+
         Alamofire.download(.GET, url, destination: destination)
             .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
                 let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
@@ -172,11 +180,12 @@ class VideoTableViewController: UITableViewController {
                 } else {
                     print("Downloaded file successfully")
                     currentVideo.downloadStatus.isDownloading = false
-                    self.userDefaults.setBool(false, forKey: downloadingKey)
+//                    self.userDefaults.setBool(false, forKey: downloadingKey)
                     
                     currentVideo.downloadStatus.isSaved = true
                     self.userDefaults.setBool(true, forKey: savedKey)
-                    
+                    self.numberOfVideosCurrentlyDownloading--
+
                     dispatch_async(dispatch_get_main_queue()) { () -> Void in
                         self.tableView.reloadData()
                     }
@@ -262,14 +271,13 @@ class VideoTableViewController: UITableViewController {
     
     func getUrlOfVideo(video: Video) -> NSURL{
         if video.downloadStatus.isSaved {
-            let manager = NSFileManager.defaultManager()
             let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
             var fileName:String
-            if getQualityFromSettings() == "HD" {
-                fileName = video.fileName+"-HD"
-            } else {
-                fileName = video.fileName
-            }
+//            if getQualityFromSettings() == "HD" {
+            fileName = video.fileName+"-HD"
+//            } else {
+//                fileName = video.fileName
+//            }
             let filePath = documents+"/"+fileName+"."+video.ext
             let filePathURL = NSURL(fileURLWithPath: filePath,isDirectory: false)
             print(filePath)
