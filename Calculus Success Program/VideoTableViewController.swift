@@ -116,6 +116,7 @@ class VideoTableViewController: UITableViewController {
             forControlEvents: .TouchUpInside)
         
         if currentVideo.downloadStatus.isDownloading {
+            cell.activityIndicator.hidden = false
             cell.progressView.progress = currentVideo.downloadStatus.downloadProgress
         } else if currentVideo.downloadStatus.isSaved {
             if let image = UIImage(contentsOfFile: "Checkmark-32.png") {
@@ -167,11 +168,13 @@ class VideoTableViewController: UITableViewController {
         let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
         numberOfVideosCurrentlyDownloading++
 
+        currentVideo.downloadStatus.isDownloading = true
+        self.tableView.reloadData()
         Alamofire.download(.GET, url, destination: destination)
             .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
                 let progress = Float(totalBytesRead) / Float(totalBytesExpectedToRead)
                 //            print(progress)
-                currentVideo.downloadStatus.isDownloading = true
+                
                 currentVideo.downloadStatus.downloadProgress = progress
                 self.updateProgressBar(progress)
             }.response { _,_,_, error in

@@ -82,7 +82,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y4o-MX-ydC">
-                                            <rect key="frame" x="8" y="68" width="551" height="13"/>
+                                            <rect key="frame" x="8" y="68" width="551" height="12.5"/>
                                             <animations/>
                                         </progressView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMj-Tb-F0f">
@@ -295,6 +295,6 @@
         <image name="download-100.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oWY-zV-Gac"/>
+        <segue reference="g7t-BJ-Xsu"/>
     </inferredMetricsTieBreakers>
 </document>
