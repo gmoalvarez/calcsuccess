@@ -188,8 +188,10 @@ class VideoTableViewController: UITableViewController {
                     currentVideo.downloadStatus.isSaved = true
                     self.userDefaults.setBool(true, forKey: savedKey)
                     self.numberOfVideosCurrentlyDownloading--
+                    
+                    
 
-                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    dispatch_async(dispatch_get_main_queue()) {
                         self.tableView.reloadData()
                     }
                 }
@@ -260,34 +262,28 @@ class VideoTableViewController: UITableViewController {
         let section = videoIndex.section
         let row = videoIndex.row
         let currentVideo = videos[section][row]
-        //TODO: - check if file is stored locally
-        let videoURL = getUrlOfVideo(currentVideo)
-        
-//        guard let videoURL = videos[section][row].url else {
-//            print("No URL for some reason")
-//            return
-//        }
+
+        guard let videoURL = getUrlOfVideo(currentVideo) else {
+            print("Could not get URL of file")
+            return
+        }
         
         destination.videoURL = videoURL
         
     }
     
-    func getUrlOfVideo(video: Video) -> NSURL{
+    func getUrlOfVideo(video: Video) -> NSURL?{
         if video.downloadStatus.isSaved {
             let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
             var fileName:String
-//            if getQualityFromSettings() == "HD" {
             fileName = video.fileName+"-HD"
-//            } else {
-//                fileName = video.fileName
-//            }
             let filePath = documents+"/"+fileName+"."+video.ext
             let filePathURL = NSURL(fileURLWithPath: filePath,isDirectory: false)
             print(filePath)
             return filePathURL
 
         }
-        return video.url!
+        return video.url
     }
     
     

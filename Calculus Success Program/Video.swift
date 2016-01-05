@@ -70,4 +70,30 @@ class Video:NSObject {
         let urlString = self.path + self.fileName + "-HD" + "." + self.ext
         return NSURL(string: urlString)
     }
+    
+    func addSkipBackupAttributeToVideo(video: Video) -> Bool {
+        //1. Get the documents directory
+        let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+        
+        //2. Since all videos downloaded are in HD, the local filename ends with HD every time
+        //   so we add HD to the file name
+        let fileName = video.fileName+"-HD"
+        
+        //3. Get local file path and NSURL
+        let filePath = documents+"/"+fileName+"."+video.ext
+        let filePathURL = NSURL(fileURLWithPath: filePath,isDirectory: false)
+        
+        //4. Add key to not include in iCloud backup
+        do {
+            try filePathURL.setResourceValue(NSNumber(bool: true), forKey: NSURLIsExcludedFromBackupKey)
+        } catch let error as NSError {
+            print(error)
+            return false
+        } catch {
+            fatalError()
+        }
+        
+        return true
+
+    }
 }
